@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "617811806371",
+    "firebase_url": "https://finalyearprojectforbit.firebaseio.com",
+    "project_id": "finalyearprojectforbit",
+    "storage_bucket": "finalyearprojectforbit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617811806371:android:efc0efe5f7b5de73169716",
+        "android_client_info": {
+          "package_name": "com.bitproject.parentapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617811806371-i6t8dhto18me58ho476medmqh7muql4j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bitproject.parentapplication",
+            "certificate_hash": "994b3968f00a24377ff0d17d676bc30ee0d97376"
+          }
+        },
+        {
+          "client_id": "617811806371-gtkjhaidjmkb5upk89bks4dte5nr0gvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlxXTqLhZKhQpVGFo-ptaj_3xtg9MLZug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617811806371-gtkjhaidjmkb5upk89bks4dte5nr0gvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
