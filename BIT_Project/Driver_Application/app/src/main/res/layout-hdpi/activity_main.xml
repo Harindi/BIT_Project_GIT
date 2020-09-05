@@ -11,38 +11,40 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:src="@drawable/logo"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Parent Login"
-        android:textColor="@color/colorText"
+        android:text="Driver Login"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold"/>
+
 
     <EditText
         android:id="@+id/txtEmail"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:padding="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:inputType="textEmailAddress"
         android:background="@drawable/edit_text_background"
         android:textSize="20dp"
-        android:textColorHint="@color/secondaryText"
-        android:textColor="@color/colorText"
-        android:drawableLeft="@drawable/face_foreground"
+        android:textColorHint="@color/colorSecondaryText"
+        android:textColor="@color/colorPrimaryText"
+        android:drawableLeft="@drawable/email_foreground"
         android:hint="Email" />
 
     <EditText
         android:id="@+id/txtPassword"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:padding="5dp"
@@ -50,8 +52,8 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/edit_text_background"
         android:drawableLeft="@drawable/lock_foreground"
-        android:textColorHint="@color/secondaryText"
-        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorSecondaryText"
+        android:textColor="@color/colorPrimaryText"
         android:textSize="20dp"
         android:hint="Password" />
 
@@ -60,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="20dp"
         android:text="Forgot Password?"
@@ -69,13 +71,14 @@
         android:textSize="17sp"/>
 
     <Button
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:background="@drawable/button_corner"
         android:layout_gravity="center"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        android:textAllCaps="false"
         android:id="@+id/btnSignin"/>
 
     <TextView android:id="@+id/txt"
@@ -84,7 +87,7 @@
         android:text="No account yet?"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:textColor="@color/secondaryText"
+        android:textColor="@color/colorSecondaryText"
         android:textSize="18dp"/>
 
     <TextView android:id="@+id/link_signup"
