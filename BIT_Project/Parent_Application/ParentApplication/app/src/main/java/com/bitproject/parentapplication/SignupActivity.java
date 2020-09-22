@@ -47,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 if (user != null){
-                    Intent intent = new Intent(SignupActivity.this, PhoneLoginActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, OptionActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
