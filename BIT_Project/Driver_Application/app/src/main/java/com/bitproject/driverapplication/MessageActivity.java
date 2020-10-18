@@ -1,6 +1,7 @@
 package com.bitproject.driverapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -73,18 +75,23 @@ public class MessageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.massage_settings_option) {
+        if (item.getItemId() == R.id.message_settings_option) {
             Intent intent = new Intent(MessageActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
-        if (item.getItemId() == R.id.massage_create_group_option) {
+        if (item.getItemId() == R.id.message_create_group_option) {
             requestNewGroup();
         }
-        if (item.getItemId() == R.id.massage_find_people_option) {
-
+        if (item.getItemId() == R.id.message_find_contacts_option) {
+            sendToFindContactsActivity();
         }
 
         return true;
+    }
+
+    private void sendToFindContactsActivity() {
+        Intent intent = new Intent(MessageActivity.this, FindContactsActivity.class);
+        startActivity(intent);
     }
 
     private void requestNewGroup() {

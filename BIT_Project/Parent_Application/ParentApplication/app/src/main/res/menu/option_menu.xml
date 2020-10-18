@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title="Find People"
-        android:id="@+id/massage_find_people_option"
+        android:id="@+id/message_find_people_option"
         app:showAsAction="never"></item>
 
     <item
         android:title="Create Group"
-        android:id="@+id/massage_create_group_option"
+        android:id="@+id/message_create_group_option"
         app:showAsAction="never"></item>
 
     <item
         android:title="Settings"
-        android:id="@+id/massage_settings_option"
+        android:id="@+id/message_settings_option"
         app:showAsAction="never"></item>
 </menu>

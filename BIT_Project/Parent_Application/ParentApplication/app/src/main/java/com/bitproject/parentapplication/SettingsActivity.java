@@ -1,9 +1,6 @@
 package com.bitproject.parentapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -39,6 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     private DatabaseReference rootRef;
 
     private static final int galleryPic = 1;
+    private StorageReference userProfileImageReference;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +57,12 @@ public class SettingsActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
 
         rootRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Parent");
+        userProfileImageReference = FirebaseStorage.getInstance().getReference().child("ProfileImages").child("Parent");
 
         updateAccountSettings =  (Button) findViewById(R.id.update_settings_button);
         username = (EditText) findViewById(R.id.set_user_name);
         userProfileImage = (CircleImageView) findViewById(R.id.set_profile_image);
+        loadingBar = new ProgressDialog(this);
 
 
         updateAccountSettings.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +100,42 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK) {
+                loadingBar.setTitle("Set Profile Image");
+                loadingBar.setMessage("Please wait!");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+
+                final Uri resultUri = result.getUri();
+                final StorageReference filePath = userProfileImageReference.child(currentUserID + ".jpg");
+                filePath.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+
+                                final String downloadUrl = uri.toString();
+                                rootRef.child(currentUserID).child("Image").setValue(downloadUrl)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(SettingsActivity.this, "Profile image stored to firebase database successfully.", Toast.LENGTH_SHORT).show();
+                                                    loadingBar.dismiss();
+                                                } else {
+                                                    String message = task.getException().getMessage();
+                                                    Toast.makeText(SettingsActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                                    loadingBar.dismiss();
+                                                }
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                });
+            }
         }
     }
 
@@ -129,13 +175,13 @@ public class SettingsActivity extends AppCompatActivity {
         rootRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name") && (dataSnapshot.hasChild("ProfileImage")))) {
+                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name") && (dataSnapshot.hasChild("Image")))) {
                     String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
-                    String retrieveProfileImage = dataSnapshot.child("ProfileImage").getValue().toString();
+                    String retrieveProfileImage = dataSnapshot.child("Image").getValue().toString();
 
                     username.setText(retrieveUserName);
-                }
-                else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name"))) {
+                    Picasso.get().load(retrieveProfileImage).into(userProfileImage);
+                } else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name"))) {
                     String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
 
                     username.setText(retrieveUserName);
