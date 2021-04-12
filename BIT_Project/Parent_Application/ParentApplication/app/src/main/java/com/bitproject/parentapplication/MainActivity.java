@@ -115,14 +115,16 @@ public class MainActivity extends AppCompatActivity {
         String password = mPassword.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmail.setError("Enter a valid email address.");
+            //mEmail.setError("Enter a valid email address.");
+            mEmail.setError("Please enter your email address");
             valid = false;
         } else {
             mEmail.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 6 ) {
-            mPassword.setError("Invalid password.");
+            //mPassword.setError("Invalid password.");
+            mPassword.setError("Please enter the password");
             valid = false;
         } else {
             mPassword.setError(null);

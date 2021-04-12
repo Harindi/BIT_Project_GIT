@@ -128,21 +128,24 @@ public class SignupActivity extends AppCompatActivity {
         final  String confirmPassword = mConfirmPassword.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmail.setError("Enter a valid email address.");
+            //mEmail.setError("Enter a valid email address.");
+            mEmail.setError("Enter your email address");
             valid = false;
         } else {
             mEmail.setError(null);
         }
 
         if (!isValidPassword(mPassword.getText().toString())) {
-            mPassword.setError("Password should contain uppercase, lowercase, number and symbol with a minimum of 6 characters.");
+            //mPassword.setError("Password should contain uppercase, lowercase, number and symbol with a minimum of 6 characters.");
+            mPassword.setError("Please enter a password");
             valid = false;
         } else {
             mPassword.setError(null);
         }
 
         if (confirmPassword.isEmpty() || !(confirmPassword.equals(password))) {
-            mConfirmPassword.setError("Password don't match.");
+            //mConfirmPassword.setError("Password don't match.");
+            mConfirmPassword.setError("Please re-enter the password");
             valid = false;
         } else {
             mConfirmPassword.setError(null);
