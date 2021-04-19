@@ -1,5 +1,6 @@
 package com.bitproject.driverapplication;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,7 +26,7 @@ public class DialogForm extends DialogFragment {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    public DialogForm(String studentName, String school, String contactNumber) {
+    public DialogForm() {
         this.studentName = studentName;
         this.school = school;
         this.contactNumber = contactNumber;
@@ -44,6 +46,7 @@ public class DialogForm extends DialogFragment {
         input_name = view.findViewById(R.id.input_name);
         input_school = view.findViewById(R.id.input_school);
         input_contactNumber = view.findViewById(R.id.input_contactNumber);
+        btn_register = view.findViewById(R.id.btn_studentRegister);
 
         input_name.setText(studentName);
         input_school.setText(school);
@@ -66,7 +69,12 @@ public class DialogForm extends DialogFragment {
                     databaseReference.child("StudentData").push().setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Successfully added new student", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -74,6 +82,15 @@ public class DialogForm extends DialogFragment {
         });
 
         return view;
+    }
+
+    public void onStart() {
+        super.onStart();
+
+        Dialog dialog = getDialog();
+
+        if (dialog != null)
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void input(EditText txt,String s) {
