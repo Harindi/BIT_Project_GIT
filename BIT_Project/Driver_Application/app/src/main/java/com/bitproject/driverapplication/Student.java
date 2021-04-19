@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
-public class Calendar extends AppCompatActivity {
+public class Student extends AppCompatActivity {
 
     CalendarView calendarView;
     TextView myDate;
@@ -15,7 +15,7 @@ public class Calendar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_student);
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         myDate = (TextView) findViewById(R.id.myDate);
