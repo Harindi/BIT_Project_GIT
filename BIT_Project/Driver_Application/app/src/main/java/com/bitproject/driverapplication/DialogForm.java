@@ -22,14 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DialogForm extends DialogFragment {
 
-    String studentName, school, contactNumber;
+    String studentName, school, contactNumber, key, select;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    public DialogForm() {
+    public DialogForm(String studentName, String school, String contactNumber, String key, String select) {
         this.studentName = studentName;
         this.school = school;
         this.contactNumber = contactNumber;
+        this.key = key;
+        this.select = select;
     }
 
     TextView input_name;
@@ -66,17 +68,31 @@ public class DialogForm extends DialogFragment {
                 } else if (TextUtils.isEmpty(contactNumber)) {
                     input((EditText) input_contactNumber, "ContactNumber");
                 } else {
-                    databaseReference.child("StudentData").push().setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(view.getContext(), "Successfully added new student", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    if (select.equals("Added")) {
+                        databaseReference.child("StudentData").push().setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(view.getContext(), "Successfully added new student", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else if (select.equals("Edit")) {
+                        databaseReference.child("StudentData").child(key).setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(view.getContext(), "Data updated successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(view.getContext(), "Data failed to change", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 }
             }
         });

@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/contact_number"
-            android:inputType="textCapSentences"/>
+            android:inputType="number"/>
 
         <Button
             android:id="@+id/btn_studentRegister"
