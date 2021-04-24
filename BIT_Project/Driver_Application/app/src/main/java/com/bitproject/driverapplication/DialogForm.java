@@ -68,7 +68,7 @@ public class DialogForm extends DialogFragment {
                 } else if (TextUtils.isEmpty(contactNumber)) {
                     input((EditText) input_contactNumber, "ContactNumber");
                 } else {
-                    if (select.equals("Added")) {
+                    if (select.equals("Add")) {
                         databaseReference.child("StudentData").push().setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -80,6 +80,7 @@ public class DialogForm extends DialogFragment {
                                 Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
                             }
                         });
+                        dismiss();
                     } else if (select.equals("Edit")) {
                         databaseReference.child("StudentData").child(key).setValue(new AddStudent(studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -92,6 +93,7 @@ public class DialogForm extends DialogFragment {
                                 Toast.makeText(view.getContext(), "Data failed to change", Toast.LENGTH_SHORT).show();
                             }
                         });
+                        dismiss();
                     }
                 }
             }
@@ -106,7 +108,7 @@ public class DialogForm extends DialogFragment {
         Dialog dialog = getDialog();
 
         if (dialog != null)
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void input(EditText txt,String s) {
