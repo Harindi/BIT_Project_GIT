@@ -23,7 +23,6 @@
         <activity
             android:name=".FindContactsActivity"
             android:parentActivityName=".MessageActivity" />
-        <activity android:name=".PhoneLoginActivity" />
         <activity android:name=".GroupChatActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".MessageActivity" />

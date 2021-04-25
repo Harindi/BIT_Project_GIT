@@ -48,10 +48,11 @@
         
         <EditText
             android:id="@+id/input_group_message"
-            android:layout_width="490dp"
+            android:layout_width="675dp"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_group_chat_text"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/colorPrimaryText"
             android:textSize="18sp"
             android:padding="12dp"/>
