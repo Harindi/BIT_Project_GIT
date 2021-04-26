@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final int galleryPic = 1;
     private Button updateAccountSettings;
-    private EditText username;
+    private EditText username, contactNumber, vehicleNumber;
     private CircleImageView userProfileImage;
     private String currentUserID;
     private FirebaseAuth mAuth;
@@ -60,6 +60,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         updateAccountSettings =  (Button) findViewById(R.id.update_settings_button);
         username = (EditText) findViewById(R.id.set_user_name);
+        contactNumber = (EditText) findViewById(R.id.set_phoneNum);
+        vehicleNumber = (EditText) findViewById(R.id.set_vehicleNum);
         userProfileImage = (CircleImageView) findViewById(R.id.set_profile_image);
         loadingBar = new ProgressDialog(this);
 
@@ -121,7 +123,7 @@ public class SettingsActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(SettingsActivity.this, "Profile image stored to firebase database successfully.", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(SettingsActivity.this, "Profile image saved successfully.", Toast.LENGTH_SHORT).show();
                                                     loadingBar.dismiss();
                                                 } else {
                                                     String message = task.getException().getMessage();
@@ -140,14 +142,24 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void updateSettings() {
         String setUsername = username.getText().toString();
+        String setPhoneNum = contactNumber.getText().toString();
+        String setVehicleNum = vehicleNumber.getText().toString();
 
         if (TextUtils.isEmpty(setUsername)) {
             Toast.makeText(this, "Please enter your user name...",Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(setPhoneNum)) {
+            Toast.makeText(this, "Please enter your contact number...",Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(setVehicleNum)) {
+            Toast.makeText(this, "Please enter your vehicle number...",Toast.LENGTH_SHORT).show();
         }
         else {
             HashMap<String, String> profileMap = new HashMap<>();
             profileMap.put("UserID", currentUserID);
             profileMap.put("Name", setUsername);
+            profileMap.put("ContactNo", setPhoneNum);
+            profileMap.put("VehicleNo", setVehicleNum);
 
             rootRef.child(currentUserID).setValue(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -174,17 +186,25 @@ public class SettingsActivity extends AppCompatActivity {
         rootRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name") && (dataSnapshot.hasChild("Image")))) {
+                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("ContactNo") && (dataSnapshot.hasChild("VehicleNo")) && (dataSnapshot.hasChild("Name") && (dataSnapshot.hasChild("Image"))))) {
                     String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
+                    String retrieveContactNum = dataSnapshot.child("ContactNo").getValue().toString();
                     String retrieveProfileImage = dataSnapshot.child("Image").getValue().toString();
+                    String retrieveVehicleNum = dataSnapshot.child("VehicleNo").getValue().toString();
 
                     username.setText(retrieveUserName);
+                    contactNumber.setText(retrieveContactNum);
+                    vehicleNumber.setText(retrieveVehicleNum);
                     Picasso.get().load(retrieveProfileImage).into(userProfileImage);
                 }
-                else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name"))) {
+                else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("ContactNo") && (dataSnapshot.hasChild("VehicleNo")) && (dataSnapshot.hasChild("Name") ))) {
                     String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
+                    String retrieveContactNum = dataSnapshot.child("ContactNo").getValue().toString();
+                    String retrieveVehicleNum = dataSnapshot.child("VehicleNo").getValue().toString();
 
                     username.setText(retrieveUserName);
+                    contactNumber.setText(retrieveContactNum);
+                    vehicleNumber.setText(retrieveVehicleNum);
                 }
                 else {
                     Toast.makeText(SettingsActivity.this, "Please update your profile information...", Toast.LENGTH_SHORT).show();

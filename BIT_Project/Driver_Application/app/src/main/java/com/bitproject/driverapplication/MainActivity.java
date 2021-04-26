@@ -70,15 +70,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        linkForgotPassword = (TextView) findViewById(R.id.forgetPasswordLink);
-
-        linkForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

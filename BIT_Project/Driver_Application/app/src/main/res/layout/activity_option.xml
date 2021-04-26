@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/colorPrimaryDark"
     tools:context=".OptionActivity">
 
     <Button
         android:id="@+id/btnVehicalLocation"
         android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:textSize="30sp"
         android:background="@drawable/button_corner"
@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/btnMessage"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_corner"
@@ -31,7 +31,7 @@
     <Button
         android:id="@+id/btnStudentData"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_corner"
@@ -41,7 +41,7 @@
     <Button
         android:id="@+id/btnStuAttendance"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_corner"
@@ -52,11 +52,21 @@
     <Button
         android:id="@+id/btnStuPayments"
         android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_corner"
         android:textSize="30sp"
         android:text="Payments"/>
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_corner"
+        android:textSize="30sp"
+        android:text="Settings"/>
 
 </LinearLayout>

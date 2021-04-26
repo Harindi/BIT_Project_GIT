@@ -7,6 +7,6 @@
     <string name="contact_number">Contact Number</string>
     <string name="school">School</string>
     <string name="student_name">Student Name</string>
-    <string name="form_input">Form Input</string>
+    <string name="form_input">Student Data</string>
     <string name="register">Submit</string>
 </resources>

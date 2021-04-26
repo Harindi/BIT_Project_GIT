@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class OptionActivity extends AppCompatActivity {
 
-    private Button mGoToMap,mMassage,mStudentData;
+    private Button mGoToMap,mMassage,mStudentData, mSettings;
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -36,7 +38,7 @@ public class OptionActivity extends AppCompatActivity {
         mGoToMap = (Button) findViewById(R.id.btnVehicalLocation);
         mMassage = (Button) findViewById(R.id.btnMessage);
         mStudentData = (Button) findViewById(R.id.btnStudentData);
-
+        mSettings = (Button) findViewById(R.id.btnSettings);
 
         mGoToMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,15 @@ public class OptionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

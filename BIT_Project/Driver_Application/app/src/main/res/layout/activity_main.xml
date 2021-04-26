@@ -34,6 +34,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="LogIn"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/colorTextIcons"
                         android:gravity="center"
                         android:textSize="50sp"
