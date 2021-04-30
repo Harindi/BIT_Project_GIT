@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         contactNumber = (EditText) findViewById(R.id.set_phoneNum);
         vehicleNumber = (EditText) findViewById(R.id.set_vehicleNum);
         userProfileImage = (CircleImageView) findViewById(R.id.set_profile_image);
-        loadingBar = new ProgressDialog(this);
+        loadingBar =  new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
 
         updateAccountSettings.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +144,7 @@ public class SettingsActivity extends AppCompatActivity {
         String setUsername = username.getText().toString();
         String setPhoneNum = contactNumber.getText().toString();
         String setVehicleNum = vehicleNumber.getText().toString();
+
 
         if (TextUtils.isEmpty(setUsername)) {
             Toast.makeText(this, "Please enter your user name...",Toast.LENGTH_SHORT).show();
