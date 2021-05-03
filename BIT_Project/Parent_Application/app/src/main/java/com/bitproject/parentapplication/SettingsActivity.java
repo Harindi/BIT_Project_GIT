@@ -37,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SettingsActivity extends AppCompatActivity {
 
     private Button updateAccountSettings;
-    private EditText username;
+    private EditText username, childName, contactNumber, school;
     private CircleImageView userProfileImage;
     private String currentUserID;
 
@@ -61,6 +61,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         updateAccountSettings =  (Button) findViewById(R.id.update_settings_button);
         username = (EditText) findViewById(R.id.set_user_name);
+        childName = (EditText) findViewById(R.id.set_child_name);
+        contactNumber = (EditText) findViewById(R.id.set_phoneNum);
+        school = (EditText) findViewById(R.id.set_school);
         userProfileImage = (CircleImageView) findViewById(R.id.set_profile_image);
         loadingBar = new ProgressDialog(this);
 
@@ -122,7 +125,7 @@ public class SettingsActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(SettingsActivity.this, "Profile image stored to firebase database successfully.", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(SettingsActivity.this, "Profile image saved successfully.", Toast.LENGTH_SHORT).show();
                                                     loadingBar.dismiss();
                                                 } else {
                                                     String message = task.getException().getMessage();
@@ -141,14 +144,29 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void updateSettings() {
         String setUsername = username.getText().toString();
+        String setChildName = childName.getText().toString();
+        String setContactNo = contactNumber.getText().toString();
+        String setSchool = school.getText().toString();
 
         if (TextUtils.isEmpty(setUsername)) {
             Toast.makeText(this, "Please enter your user name...",Toast.LENGTH_SHORT).show();
         }
+        if (TextUtils.isEmpty(setChildName)) {
+            Toast.makeText(this, "Please enter your child name...",Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(setContactNo)) {
+            Toast.makeText(this, "Please enter your contact number...",Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(setSchool)) {
+            Toast.makeText(this, "Please enter your child's school...",Toast.LENGTH_SHORT).show();
+        }
         else {
             HashMap<String, String> profileMap = new HashMap<>();
             profileMap.put("UserID", currentUserID);
-            profileMap.put("Name", setUsername);
+            profileMap.put("ParentName", setUsername);
+            profileMap.put("ChildName", setChildName);
+            profileMap.put("ContactNumber", setContactNo);
+            profileMap.put("School", setSchool);
 
             rootRef.child(currentUserID).setValue(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -160,7 +178,7 @@ public class SettingsActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
 
-                                Toast.makeText(SettingsActivity.this, "Profile Updates Successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingsActivity.this, "Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 String message = task.getException().toString();
@@ -175,16 +193,28 @@ public class SettingsActivity extends AppCompatActivity {
         rootRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name") && (dataSnapshot.hasChild("Image")))) {
-                    String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
+                if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("ParentName")) && (dataSnapshot.hasChild("ChildName")) && (dataSnapshot.hasChild("ContactNumber")) && (dataSnapshot.hasChild("School")) && (dataSnapshot.hasChild("Image"))) {
+                    String retrieveParentName = dataSnapshot.child("ParentName").getValue().toString();
+                    String retrieveChildName = dataSnapshot.child("ChildName").getValue().toString();
+                    String retrieveContactNumber = dataSnapshot.child("ContactNumber").getValue().toString();
+                    String retrieveSchool = dataSnapshot.child("School").getValue().toString();
                     String retrieveProfileImage = dataSnapshot.child("Image").getValue().toString();
 
-                    username.setText(retrieveUserName);
+                    username.setText(retrieveParentName);
+                    childName.setText(retrieveChildName);
+                    contactNumber.setText(retrieveContactNumber);
+                    school.setText(retrieveSchool);
                     Picasso.get().load(retrieveProfileImage).into(userProfileImage);
-                } else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("Name"))) {
-                    String retrieveUserName = dataSnapshot.child("Name").getValue().toString();
+                } else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("ParentName")) && (dataSnapshot.hasChild("ChildName")) && (dataSnapshot.hasChild("ContactNumber")) && (dataSnapshot.hasChild("School"))) {
+                    String retrieveParentName = dataSnapshot.child("ParentName").getValue().toString();
+                    String retrieveChildName = dataSnapshot.child("ChildName").getValue().toString();
+                    String retrieveContactNumber = dataSnapshot.child("ContactNumber").getValue().toString();
+                    String retrieveSchool = dataSnapshot.child("School").getValue().toString();
 
-                    username.setText(retrieveUserName);
+                    username.setText(retrieveParentName);
+                    childName.setText(retrieveChildName);
+                    contactNumber.setText(retrieveContactNumber);
+                    school.setText(retrieveSchool);
                 }
                 else {
                     Toast.makeText(SettingsActivity.this, "Please update your profile information...", Toast.LENGTH_SHORT).show();

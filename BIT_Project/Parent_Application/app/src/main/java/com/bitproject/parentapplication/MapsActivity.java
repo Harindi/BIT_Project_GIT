@@ -79,6 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 disconnectParent();
+                finish();
                 Intent intent = new Intent(MapsActivity.this, OptionActivity.class);
                 startActivity(intent);
             }
@@ -103,13 +104,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onKeyEntered(String key, GeoLocation location) {
                 if (!driverFound) {
                     driverFoundID = key;
-                    /*
+
                     DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Driver").child(driverFoundID);
                     String parentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     HashMap map =  new HashMap();
                     map.put("ParentRequestID", parentID);
                     driverRef.updateChildren(map);
-                     */
+
 
                     getDriverLocation();
                 }
@@ -270,7 +271,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
 
         String parentId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -279,7 +280,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         geoFire.setLocation(parentId, new GeoLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
 
         parentLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(parentLocation).title("You are Here Now!").icon(BitmapDescriptorFactory.fromResource(R.mipmap.pin_foreground)));
+        //mMap.addMarker(new MarkerOptions().position(parentLocation).title("You are Here Now!").icon(BitmapDescriptorFactory.fromResource(R.mipmap.pin_foreground)));
 
         mCheckLocation.setText("Getting Driver!!");
 

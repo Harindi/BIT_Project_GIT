@@ -4,14 +4,15 @@ public class AddStudent {
 
     private String key;
 
+    private String ID;
     private String studentName;
     private String school;
     private String contactNumber;
 
-    public AddStudent(){
-    }
+    public AddStudent() {}
 
-    public AddStudent(String studentName, String school, String contactNumber) {
+    public AddStudent(String id, String studentName, String school, String contactNumber) {
+        this.ID = id;
         this.studentName = studentName;
         this.school = school;
         this.contactNumber = contactNumber;
@@ -23,6 +24,14 @@ public class AddStudent {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getStudentName() {

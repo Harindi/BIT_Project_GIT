@@ -69,7 +69,7 @@ public class OptionActivity extends AppCompatActivity {
         userRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!(dataSnapshot.child("Name").exists())) {
+                if (!(dataSnapshot.child("ParentName").exists())) {
                     Intent intent = new Intent(OptionActivity.this, SettingsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

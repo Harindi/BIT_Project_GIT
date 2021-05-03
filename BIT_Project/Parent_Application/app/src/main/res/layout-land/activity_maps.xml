@@ -15,7 +15,7 @@
 
         <ImageView
             android:id="@+id/imgBack"
-            android:layout_width="45dp"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
             android:src="@drawable/back_foreground"
             android:background="@color/colorPrimaryDark"/>

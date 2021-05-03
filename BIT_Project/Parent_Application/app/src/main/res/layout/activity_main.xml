@@ -33,10 +33,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="WELCOME"
+                        android:text="LogIn"
                         android:textColor="@color/colorText"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:textSize="60sp"
+                        android:textSize="50sp"
                         android:textStyle="italic"/>
                 </LinearLayout>
             </LinearLayout>
@@ -48,22 +49,22 @@
 
             <EditText
                 android:id="@+id/txtEmail"
-                android:layout_width="350dp"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:padding="5dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/edit_text_background"
                 android:textSize="20dp"
-                android:textColorHint="@color/secondaryText"
+                android:textColorHint="@color/colorSecondaryText"
                 android:textColor="@color/colorText"
                 android:drawableLeft="@drawable/face_foreground"
                 android:hint="Email" />
 
             <EditText
                 android:id="@+id/txtPassword"
-                android:layout_width="350dp"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:padding="5dp"
@@ -71,31 +72,19 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/lock_foreground"
-                android:textColorHint="@color/secondaryText"
+                android:textColorHint="@color/colorSecondaryText"
                 android:textColor="@color/colorText"
                 android:textSize="20dp"
                 android:hint="Password" />
 
-            <TextView
-                android:id="@+id/forgetPasswordLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="20dp"
-                android:text="Forgot Password?"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="17sp"/>
-
             <Button
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
                 android:background="@drawable/button_corner"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:padding="10dp"
                 android:textColor="@color/colorText"
                 android:textSize="20sp"
                 android:id="@+id/btnSignin"/>
@@ -106,14 +95,14 @@
                 android:text="No account yet?"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/secondaryText"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="18dp"/>
 
             <TextView android:id="@+id/link_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorTextIcons"
                 android:text="Create one"
                 android:gravity="center"
                 android:textSize="18dp"/>

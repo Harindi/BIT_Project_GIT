@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MapsActivity">
-
-    <include
-        layout="@layout/app_bar_layout"
-        android:id="@+id/mapToolbar"/>
     
     <FrameLayout
         android:layout_width="match_parent"

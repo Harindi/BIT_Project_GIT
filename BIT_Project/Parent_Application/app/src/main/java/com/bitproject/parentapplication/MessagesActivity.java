@@ -2,6 +2,7 @@ package com.bitproject.parentapplication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -68,6 +70,7 @@ public class MessagesActivity extends AppCompatActivity {
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -91,6 +94,7 @@ public class MessagesActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestNewGroup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MessagesActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         builder.setTitle("Enter Group Name :");
@@ -148,7 +152,7 @@ public class MessagesActivity extends AppCompatActivity {
         userRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!(dataSnapshot.child("Name").exists())) {
+                if (!(dataSnapshot.child("ParentName").exists())) {
                     Intent intent = new Intent(MessagesActivity.this, SettingsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/group_chat_bar_layout"
-        android:background="@color/colorPrimaryLight"
         android:layout_above="@+id/myLinearlayout">
 
         <LinearLayout
@@ -42,28 +41,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorPrimaryLight"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
-        
+
         <EditText
             android:id="@+id/input_group_message"
-            android:layout_width="600dp"
+            android:layout_width="675dp"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_group_chat_text"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="12sp"
-            android:padding="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:padding="15dp"/>
 
         <ImageView
             android:id="@+id/send_message_button"
             android:layout_width="40dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryLight"
-            android:src="@drawable/send_message" />
+            android:layout_height="60dp"
+            android:src="@drawable/send_message_foreground" />
     </LinearLayout>
 
 </RelativeLayout>

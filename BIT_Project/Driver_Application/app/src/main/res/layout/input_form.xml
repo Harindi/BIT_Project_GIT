@@ -28,9 +28,22 @@
         android:padding="20dp">
 
         <EditText
+            android:id="@+id/input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorTextIcons"
+            android:hint="ID"
+            android:textColorHint="@color/colorSecondaryText"
+            android:inputType="textCapSentences"/>
+
+
+        <EditText
             android:id="@+id/input_name"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:background="@drawable/edit_text_background"
             android:layout_marginBottom="10dp"

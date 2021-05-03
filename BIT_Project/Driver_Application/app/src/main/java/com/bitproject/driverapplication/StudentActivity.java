@@ -42,7 +42,7 @@ public class StudentActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogForm dialogForm = new DialogForm("", "","","","Add");
+                DialogForm dialogForm = new DialogForm("","", "","","","Add");
                 dialogForm.show(getSupportFragmentManager(), "Form");
             }
         });

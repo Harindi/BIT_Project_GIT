@@ -45,16 +45,18 @@
         android:background="@color/colorPrimaryLight"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
-        
+
         <EditText
             android:id="@+id/input_group_message"
-            android:layout_width="370dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_group_chat_text"
             android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/edit_group_chat_text"
+            android:padding="10dp"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="18sp"
-            android:padding="12dp"/>
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/send_message_button"

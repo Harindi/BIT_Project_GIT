@@ -43,7 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	GoogleApiClient mGoogleAPIClient;
 
 	Location mLastLocation;
-	private Toolbar mToolbar;
 	LocationRequest mLocationRequest;
 	private GoogleMap mMap;
 	private SharedPreferences sharedPreferences;
@@ -59,8 +58,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
-
-		mToolbar = (Toolbar) findViewById(R.id.mapToolbar);
 
 		if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);

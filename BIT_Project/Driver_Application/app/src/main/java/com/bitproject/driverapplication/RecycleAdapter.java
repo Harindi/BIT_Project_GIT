@@ -46,9 +46,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.MyViewHolder holder, int position) {
         final AddStudent stu = mList.get(position);
+        holder.ID.setText("ID: " + stu.getID());
         holder.textViewName.setText("Name: " + stu.getStudentName());
         holder.textViewSchool.setText("School: " + stu.getSchool());
-        holder.textViewContactNumber.setText("ContactNumber: " + stu.getContactNumber());
+        holder.textViewContactNumber.setText("Contact Number: " + stu.getContactNumber());
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +84,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             @Override
             public boolean onLongClick(View v) {
                 FragmentManager manager = ((AppCompatActivity)activity).getSupportFragmentManager();
-                DialogForm dialogForm = new DialogForm(stu.getStudentName(),
+                DialogForm dialogForm = new DialogForm(stu.getID(),stu.getStudentName(),
                         stu.getSchool(),
                         stu.getContactNumber(),
                         stu.getKey(),
@@ -101,6 +102,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView ID;
         TextView textViewName;
         TextView textViewSchool;
         TextView textViewContactNumber;
@@ -111,6 +113,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            ID = itemView.findViewById(R.id.txt_id);
             textViewName = itemView.findViewById(R.id.txt_name);
             textViewSchool = itemView.findViewById(R.id.txt_school);
             textViewContactNumber = itemView.findViewById(R.id.txt_contactno);
