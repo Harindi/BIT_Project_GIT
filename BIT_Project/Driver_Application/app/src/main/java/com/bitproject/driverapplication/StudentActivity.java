@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -42,8 +43,12 @@ public class StudentActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogForm dialogForm = new DialogForm("","", "","","","Add");
-                dialogForm.show(getSupportFragmentManager(), "Form");
+                if(listStudent.size() < 10 ) {
+                    DialogForm dialogForm = new DialogForm("", "", "","", "", "Add");
+                    dialogForm.show(getSupportFragmentManager(), "Form");
+                } else {
+                    Toast.makeText(StudentActivity.this, "No more seating facility", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

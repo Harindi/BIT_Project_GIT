@@ -10,9 +10,4 @@
         android:title="Create Group"
         android:id="@+id/message_create_group_option"
         app:showAsAction="never"></item>
-
-    <item
-        android:title="Settings"
-        android:id="@+id/message_settings_option"
-        app:showAsAction="never"></item>
 </menu>

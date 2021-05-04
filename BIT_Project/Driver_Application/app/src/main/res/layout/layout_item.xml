@@ -31,14 +31,6 @@
 
             <TextView
                 android:padding="5dp"
-                android:id="@+id/txt_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextIcons"
-                android:text="ID" />
-
-            <TextView
-                android:padding="5dp"
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,6 +51,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_number"
+                android:textColor="@color/colorTextIcons"/>
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_fee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fee"
                 android:textColor="@color/colorTextIcons"/>
 
         </LinearLayout>

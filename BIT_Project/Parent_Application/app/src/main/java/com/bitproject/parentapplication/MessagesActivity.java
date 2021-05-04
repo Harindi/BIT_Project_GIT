@@ -75,10 +75,6 @@ public class MessagesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.message_settings_option) {
-            Intent intent = new Intent(MessagesActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        }
         if (item.getItemId() == R.id.message_create_group_option) {
             requestNewGroup();
         }

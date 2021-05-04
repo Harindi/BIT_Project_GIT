@@ -152,6 +152,9 @@ public class SettingsActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(setPhoneNum)) {
             Toast.makeText(this, "Please enter your contact number...",Toast.LENGTH_SHORT).show();
         }
+        else if (setPhoneNum.length() != 10) {
+            Toast.makeText(this, "Please enter valid contact number...",Toast.LENGTH_SHORT).show();
+        }
         else if (TextUtils.isEmpty(setVehicleNum)) {
             Toast.makeText(this, "Please enter your vehicle number...",Toast.LENGTH_SHORT).show();
         }

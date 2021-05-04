@@ -29,13 +29,6 @@
             android:layout_marginStart="10dp"
             android:background="@color/colorPrimaryLight">
 
-            <TextView
-                android:padding="5dp"
-                android:id="@+id/txt_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextIcons"
-                android:text="ID" />
 
 
             <TextView
@@ -60,6 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_number"
+                android:textColor="@color/colorTextIcons"/>
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_fee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fee"
                 android:textColor="@color/colorTextIcons"/>
 
         </LinearLayout>

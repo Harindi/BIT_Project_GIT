@@ -22,6 +22,8 @@ public class OptionActivity extends AppCompatActivity {
 
     private Button mVehicalLocation;
     private Button mMessages;
+    private Button mSettings;
+    private Button mDriverData;
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -38,6 +40,8 @@ public class OptionActivity extends AppCompatActivity {
 
         mVehicalLocation = (Button) findViewById(R.id.btnVehicalLocation);
         mMessages = (Button) findViewById(R.id.btnMessages);
+        mSettings = (Button) findViewById(R.id.btnSettings);
+        mDriverData = (Button) findViewById(R.id.btnDriverData);
 
         mVehicalLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,22 @@ public class OptionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*mDriverData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionActivity.this, DriverDataActivity.class);
+                startActivity(intent);
+            }
+        });*/
     }
 
     @Override

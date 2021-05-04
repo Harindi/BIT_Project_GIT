@@ -3,6 +3,7 @@ package com.bitproject.driverapplication;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.MyViewHolder holder, int position) {
         final AddStudent stu = mList.get(position);
-        holder.ID.setText("ID: " + stu.getID());
         holder.textViewName.setText("Name: " + stu.getStudentName());
         holder.textViewSchool.setText("School: " + stu.getSchool());
         holder.textViewContactNumber.setText("Contact Number: " + stu.getContactNumber());
+        holder.textViewFee.setText("Fee: " + stu.getFee() + ".00");
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +85,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             @Override
             public boolean onLongClick(View v) {
                 FragmentManager manager = ((AppCompatActivity)activity).getSupportFragmentManager();
-                DialogForm dialogForm = new DialogForm(stu.getID(),stu.getStudentName(),
+                DialogForm dialogForm = new DialogForm(
+                        stu.getStudentName(),
                         stu.getSchool(),
                         stu.getContactNumber(),
+                        stu.getFee(),
                         stu.getKey(),
                         "Edit");
 
@@ -98,14 +101,15 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
+
         return mList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView ID;
         TextView textViewName;
         TextView textViewSchool;
         TextView textViewContactNumber;
+        TextView textViewFee;
 
         CardView card_View;
         ImageView imgDelete;
@@ -113,10 +117,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            ID = itemView.findViewById(R.id.txt_id);
             textViewName = itemView.findViewById(R.id.txt_name);
             textViewSchool = itemView.findViewById(R.id.txt_school);
             textViewContactNumber = itemView.findViewById(R.id.txt_contactno);
+            textViewFee = itemView.findViewById(R.id.txt_fee);
 
             card_View = itemView.findViewById(R.id.cardView);
             imgDelete= itemView.findViewById(R.id.delete);

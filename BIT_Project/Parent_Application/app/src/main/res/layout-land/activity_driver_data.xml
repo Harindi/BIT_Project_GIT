@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DriverDataActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/colorPrimaryLight">
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_driver_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextIcons"
+                android:text="Driver Name" />
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_contact_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextIcons"
+                android:text="Contact Number"/>
+
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_vehicleno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Number"
+                android:textColor="@color/colorTextIcons"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -22,15 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DialogForm extends DialogFragment {
 
-    String id, studentName, school, contactNumber, key, select;
+    String studentName, school, contactNumber, fee, key, select;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    public DialogForm(String id, String studentName, String school, String contactNumber, String key, String select) {
-        this.id = id;
+    public DialogForm(String studentName, String school, String contactNumber, String fee, String key, String select) {
         this.studentName = studentName;
         this.school = school;
         this.contactNumber = contactNumber;
+        this.fee = fee;
         this.key = key;
         this.select = select;
     }
@@ -38,7 +38,7 @@ public class DialogForm extends DialogFragment {
     TextView input_name;
     TextView input_school;
     TextView input_contactNumber;
-    TextView ID;
+    TextView input_fee;
 
     Button btn_register;
 
@@ -50,64 +50,60 @@ public class DialogForm extends DialogFragment {
         input_name = view.findViewById(R.id.input_name);
         input_school = view.findViewById(R.id.input_school);
         input_contactNumber = view.findViewById(R.id.input_contactNumber);
+        input_fee = view.findViewById(R.id.input_fee);
         btn_register = view.findViewById(R.id.btn_studentRegister);
-        ID = view.findViewById(R.id.input_id);
 
-        ID.setText(id);
         input_name.setText(studentName);
         input_school.setText(school);
         input_contactNumber.setText(contactNumber);
+        input_fee.setText(fee);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = ID.getText().toString();
                 String studentName = input_name.getText().toString();
                 String school = input_school.getText().toString();
                 String contactNumber = input_contactNumber.getText().toString();
+                String fee = input_fee.getText().toString();
 
-                if (TextUtils.isEmpty(id)) {
-                    input((EditText) ID, "ID");
-                }else if (TextUtils.isEmpty(studentName)) {
+                if (TextUtils.isEmpty(studentName)) {
                     input((EditText) input_name, "Student Name");
                 } else if (TextUtils.isEmpty(school)) {
                     input((EditText) input_school, "School");
                 } else if (TextUtils.isEmpty(contactNumber)) {
                     input((EditText) input_contactNumber, "Contact Number");
+                } else if (TextUtils.isEmpty(fee)) {
+                    input((EditText) input_fee, "Fee");
                 } else {
                     if (select.equals("Add")) {
-                        if(databaseReference.child("StudentData").child("id").equals(id)){
-                            Toast.makeText(view.getContext(), "ID no exists", Toast.LENGTH_SHORT).show();
-                        } else {
-                            databaseReference.child("StudentData").push().setValue(new AddStudent(id, studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(view.getContext(), "Successfully added new student", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                        dismiss();
-                    } else if (select.equals("Edit")) {
-                        databaseReference.child("StudentData").child(key).setValue(new AddStudent(id,studentName, school, contactNumber)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        databaseReference.child("StudentData").push().setValue(new AddStudent(studentName, school, contactNumber, fee)).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(view.getContext(), "Data updated successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Successfully added new student", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(view.getContext(), "Data failed to change", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        dismiss();
-                    }
+                    dismiss();
+                } else if (select.equals("Edit")) {
+                    databaseReference.child("StudentData").child(key).setValue(new AddStudent(studentName, school, contactNumber, fee)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(view.getContext(), "Data updated successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(view.getContext(), "Data failed to change", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    dismiss();
                 }
             }
+                }
         });
 
         return view;
