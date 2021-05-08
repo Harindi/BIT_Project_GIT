@@ -44,7 +44,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(listStudent.size() < 10 ) {
-                    DialogForm dialogForm = new DialogForm("", "", "","", "", "Add");
+                    DialogForm dialogForm = new DialogForm("", "", "","", "", "", "Add");
                     dialogForm.show(getSupportFragmentManager(), "Form");
                 } else {
                     Toast.makeText(StudentActivity.this, "No more seating facility", Toast.LENGTH_SHORT).show();

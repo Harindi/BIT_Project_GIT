@@ -76,6 +76,18 @@
             android:hint="Fee"
             android:inputType="number"/>
 
+        <EditText
+            android:id="@+id/parent_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextIcons"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/colorSecondaryText"
+            android:hint="Parent"
+            android:inputType="textCapSentences"/>
+
         <Button
             android:id="@+id/btn_studentRegister"
             android:layout_width="wrap_content"

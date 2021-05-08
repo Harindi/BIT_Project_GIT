@@ -19,6 +19,16 @@
         android:text="Map"/>
 
     <Button
+        android:id="@+id/btnnew"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:background="@drawable/button_corner"
+        android:text="New"/>
+
+    <Button
         android:id="@+id/btnMessage"
         android:layout_width="250dp"
         android:layout_height="75dp"

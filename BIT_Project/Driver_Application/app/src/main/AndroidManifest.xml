@@ -19,7 +19,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StudentActivity"></activity>
+        <activity android:name=".NewActivity"></activity>
+        <activity android:name=".StudentActivity" />
         <activity
             android:name=".FindContactsActivity"
             android:parentActivityName=".MessageActivity" />

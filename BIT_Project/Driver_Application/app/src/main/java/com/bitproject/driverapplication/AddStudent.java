@@ -8,6 +8,7 @@ public class AddStudent {
     private String school;
     private String contactNumber;
     private String fee;
+    private String parentName;
 
     public AddStudent() {}
 
@@ -19,11 +20,20 @@ public class AddStudent {
         this.fee = fee;
     }
 
-    public AddStudent(String studentName, String school, String contactNumber, String fee) {
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public AddStudent(String studentName, String school, String contactNumber, String fee, String parentName) {
         this.studentName = studentName;
         this.school = school;
         this.contactNumber = contactNumber;
         this.fee = fee;
+        this.parentName = parentName;
     }
 
     public String getKey() {

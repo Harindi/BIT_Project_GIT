@@ -51,6 +51,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         holder.textViewSchool.setText("School: " + stu.getSchool());
         holder.textViewContactNumber.setText("Contact Number: " + stu.getContactNumber());
         holder.textViewFee.setText("Fee: " + stu.getFee() + ".00");
+        holder.textViewParentName.setText("Parent Name: " + stu.getParentName());
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
                         stu.getSchool(),
                         stu.getContactNumber(),
                         stu.getFee(),
+                        stu.getParentName(),
                         stu.getKey(),
                         "Edit");
 
@@ -110,6 +112,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         TextView textViewSchool;
         TextView textViewContactNumber;
         TextView textViewFee;
+        TextView textViewParentName;
 
         CardView card_View;
         ImageView imgDelete;
@@ -121,6 +124,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
             textViewSchool = itemView.findViewById(R.id.txt_school);
             textViewContactNumber = itemView.findViewById(R.id.txt_contactno);
             textViewFee = itemView.findViewById(R.id.txt_fee);
+            textViewParentName = itemView.findViewById(R.id.txt_parent);
 
             card_View = itemView.findViewById(R.id.cardView);
             imgDelete= itemView.findViewById(R.id.delete);

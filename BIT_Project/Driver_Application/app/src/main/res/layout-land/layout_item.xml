@@ -63,6 +63,14 @@
                 android:text="Fee"
                 android:textColor="@color/colorTextIcons"/>
 
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/txt_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Parent"
+                android:textColor="@color/colorTextIcons"/>
+
         </LinearLayout>
         
         <LinearLayout

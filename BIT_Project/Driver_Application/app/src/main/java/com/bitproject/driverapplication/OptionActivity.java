@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class OptionActivity extends AppCompatActivity {
 
-    private Button mGoToMap,mMassage,mStudentData, mSettings;
+    private Button mGoToMap,mMassage,mStudentData, mSettings, mNew;
 
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -39,6 +39,16 @@ public class OptionActivity extends AppCompatActivity {
         mMassage = (Button) findViewById(R.id.btnMessage);
         mStudentData = (Button) findViewById(R.id.btnStudentData);
         mSettings = (Button) findViewById(R.id.btnSettings);
+
+        mNew = (Button) findViewById(R.id.btnnew);
+
+        mNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OptionActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mGoToMap.setOnClickListener(new View.OnClickListener() {
             @Override
